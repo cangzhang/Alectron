@@ -1,0 +1,26 @@
+<html ng-app="app">
+    <title>Alectron</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- build:css assets/css/app.css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <!-- endbuild -->
+<body>
+    <div class="container" ng-controller="myController">
+      <h3>hello Alectron</h3>
+      <div ng-model="title">{{ title }}</div>
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <!-- endbuild -->
+   
+    <!-- build:app scripts/app.js -->
+    <script src="scripts/app.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
