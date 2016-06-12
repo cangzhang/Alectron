@@ -21,7 +21,7 @@
                     getCityWeather(vm.selectedCityId, myToken)
                         .success(function(data, status) {
                             var key = "HeWeather data service 3.0";
-                            vm.formData = data;
+                            vm.formData = data['HeWeather data service 3.0'];
                     });
                 }
 
