@@ -28,6 +28,12 @@
 .md-select-menu-container md-content {
     overflow-x: hidden;
 }
+.carddemoBasicUsage .card-media {
+  background-color: #999999; }
 weather md-select {
 
+}
+md-card {
+    overflow-y: hidden;
+    min-height: 300px;
 }

@@ -12,8 +12,8 @@
 			controller: function($scope, $http, $element) {
 				var vm = this;
 				var myToken = '30ba7757914543d690710f667c834dfa';
-				var cityList = {};
 				var baseUri = 'http://api.heweather.com/x3/';
+				var conditionList = {};
 
 				vm.cityType = 'allchina';
 				vm.weatherTitle = 'zz';
@@ -23,18 +23,36 @@
 				vm.clearSearchTerm = function() {
 					vm.searchTerm = '';
 				};
+
 				vm.getCityWeather = function() {
 					getCityWeather(vm.selectedCityId, myToken).success(function(data, status) {
-						var key = "HeWeather data service 3.0";
-						vm.formData = data['HeWeather data service 3.0'];
+						var weatherinfo 		    = data['HeWeather data service 3.0'][0];
+						vm.formData.currentCity     = weatherinfo.basic.city;
+						vm.formData.currentCountry  = weatherinfo.basic.cnty;
+						vm.formData.currentCond     = weatherinfo.now.cond.code;
+						vm.formData.currentCondText	= weatherinfo.now.cond.txt;
+						console.log(conditionList);
+						for(var i in conditionList) {
+							if (vm.formData.currentCond == i.code) {
+								console.log("1");
+								vm.formData.currentCondTextEn = i.txt_en;
+								vm.formData.currentCondIcon	  = i.icon;
+								console.log(i);
+							}
+						}
 					});
-				}
+				};
 
 				angular.element(document).ready(function() {
 					getAllCities(vm.cityType, myToken).success(function(data, status) {
 						vm.cityList = data.city_info;
 					});
+					getWeatherCondition(myToken).success(function(data, status) {
+						conditionList = data.cond_info;
+					});
 				});
+
+
 				$element.find('input').on('keydown', function(ev) {
 					ev.stopPropagation();
 				});
@@ -45,6 +63,10 @@
 
 				function getCityWeather(cityId, token) {
 					return $http.get(baseUri + 'weather?cityid=' + cityId + '&key=' + token);
+				}
+
+				function getWeatherCondition(token) {
+					return $http.get(baseUri + 'condition?search=allcond&key=' + token);
 				}
 			}
 		};
