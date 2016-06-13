@@ -5,44 +5,52 @@
         </h2>
     </div>
 </div>
-<md-input-container style="margin-right: 10px;">
-    <label>
-        City
-    </label>
-    <md-select ng-model="vm.selectedCityId" ng-change="vm.getCityWeather()">
-        <md-option
-            ng-repeat="city in vm.cityList"
-            ng-value="city.id">
-            {{city.city}}
-        </md-option>
-    </md-select>
-
-    <pre>{{vm.formData | json}}</pre>
-
-</md-input-container>
+<div>
+    <md-input-container style="margin-right: 10px;" flex-50>
+        <label>
+            City
+        </label>
+        <md-select ng-model="vm.selectedCityId"
+            ng-change="vm.getCityWeather()"
+            md-on-close="vm.clearSearchTerm()">
+                <md-select-header class="demo-select-header">
+                    <input ng-model="vm.searchTerm"
+                        type="search"
+                        placeholder="Search"
+                        class="demo-header-searchbox _md-text"/>
+                </md-select-header>
+            <md-option
+                ng-repeat="city in vm.cityList |filter:searchTerm"
+                ng-value="city.id">
+                {{city.city}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+</div>
+<pre>{{vm.formData | json}}</pre>
 <md-content class="md-padding" layout-xs="column" layout="row">
-    <md-card md-theme="">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">
-                    Card with image
-                </span>
-                <span class="md-subhead">
-                    Small
-                </span>
-            </md-card-title-text>
-            <md-card-title-media>
-                <div class="md-media-sm card-media">
-                </div>
-            </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-            <md-button>
-                Action 1
-            </md-button>
-            <md-button>
-                Action 2
-            </md-button>
-        </md-card-actions>
-    </md-card>
-</md-content>
+        <md-card md-theme="">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">
+                        Card with image
+                    </span>
+                    <span class="md-subhead">
+                        Small
+                    </span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-sm card-media">
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button>
+                    Action 1
+                </md-button>
+                <md-button>
+                    Action 2
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </md-content>
