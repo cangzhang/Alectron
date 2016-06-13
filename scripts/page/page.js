@@ -32,11 +32,11 @@
 						vm.formData.currentCond     = weatherinfo.now.cond.code;
 						vm.formData.currentCondText	= weatherinfo.now.cond.txt;
 						console.log(conditionList);
-						for(var i in conditionList) {
-							if (vm.formData.currentCond == i.code) {
+						for(var i=0; i<conditionList.length; i++) {
+							if (vm.formData.currentCond == conditionList[i].code) {
 								console.log("1");
-								vm.formData.currentCondTextEn = i.txt_en;
-								vm.formData.currentCondIcon	  = i.icon;
+								vm.formData.currentCondTextEn = conditionList[i].txt_en;
+								vm.formData.currentCondIcon	  = conditionList[i].icon;
 								console.log(i);
 							}
 						}
